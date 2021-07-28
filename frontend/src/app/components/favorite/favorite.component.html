@@ -1,0 +1,4 @@
+<div class="wrapper w-75 m-auto">
+    <app-car-card *ngFor="let car of cars" [car]="car" [cart]="true" (remove)="removeFromFavorites($event)">
+    </app-car-card>
+</div>
