@@ -39,4 +39,14 @@ export class CartComponent implements OnInit {
     )
   }
 
+  buyFromCart() {
+    this.carService.buyFromCart().subscribe(
+      success => {
+        this.getCarsForUser()
+        this.toastr.success('Uspjesno kupljeno')
+      }
+    )
+  }
+
 }
+

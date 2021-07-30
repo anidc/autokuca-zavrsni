@@ -9,7 +9,7 @@ const getAllUsers = (req, res) => {
 }
 
 const getUserById = (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
     conn.query(`SELECT * FROM user WHERE id = ${id}`, (err, results) => {
         if (err) return res.status(500).send(err)
         res.status(200).json(results[0] || {})

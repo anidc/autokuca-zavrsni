@@ -36,8 +36,29 @@ const removeAllFromCart = (req, res) => {
     })
 }
 
+const buyFromCart = (req, res) => {
+    const { user_id } = req.params;
+
+    let sql = "UPDATE cart SET status='DONE' WHERE user_id = ?"
+
+    conn.query(sql, [user_id], (err, results) => {
+        if (err) return res.status(500).send(err)
+        res.status(200).json({ msg: "Uspjesno kupljeni proizvodi" })
+    })
+}
+
+const allBoughtCars = (req, res) => {
+    const { user_id } = req.params;
+    const sql = "SELECT title, km, price, discount, main_image FROM cart ct JOIN car c ON ct.car_id = c.id WHERE status ='DONE' and user_id = ?;"
+    conn.query(sql, [user_id], (err, results) => {
+        if (err) return res.status(500).send(err)
+        res.status(200).json(results)
+    })
+}
+
+
 
 
 module.exports = {
-    addToCart, getCarsFromUserCart, removeFromCart, removeAllFromCart
+    addToCart, getCarsFromUserCart, removeFromCart, removeAllFromCart, buyFromCart, allBoughtCars
 }

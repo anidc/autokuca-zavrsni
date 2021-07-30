@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class CarCardComponent implements OnInit {
 
     @Input() cart = false
+    @Input() favorite = false
     @Input() car: any = {}
 
     @Output() remove = new EventEmitter()

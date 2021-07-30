@@ -9,7 +9,7 @@ import { CarsServiceService } from 'src/app/shared/services/cars-service.service
 })
 export class FavoriteComponent implements OnInit {
 
-  cars: any[] = [];
+  cars: any[] = []
 
   constructor(private carService: CarsServiceService, private toastr: ToastrService) { }
 
@@ -18,10 +18,10 @@ export class FavoriteComponent implements OnInit {
   }
 
   getCarsForUserFav() {
-    this.carService.getCarsFromUserCart().subscribe((response: any[]) => this.cars = response)
+    this.carService.getCarsFromUserFavorites().subscribe((response: any[]) => this.cars = response)
   }
 
-  removeFromFavorites(id: number) {
+  removeFromFavorites(id: any) {
     this.carService.removeFromFavorites(id).subscribe(
       success => {
         this.toastr.success("Upsjesno obrisan auto iz omiljenih")

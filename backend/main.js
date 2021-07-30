@@ -17,7 +17,7 @@ const { getMake } = require("./controller/car/make-controller")
 const { getModel } = require("./controller/car/model-controller")
 const { getTransmission } = require("./controller/car/transmission-controller")
 const { getMakeModel } = require("./controller/car/make-model-controller")
-const { getCarsFromUserCart, addToCart, removeFromCart, removeAllFromCart } = require("./controller/car/cart-controller")
+const { getCarsFromUserCart, addToCart, removeFromCart, removeAllFromCart, buyFromCart, allBoughtCars } = require("./controller/car/cart-controller")
 const { addToFavorites, getCarsFromUserFavorites, removeFromFavorites } = require("./controller/car/favorites-controller")
 
 app.get("/", (req, res) => {
@@ -52,6 +52,8 @@ app.get("/getTransmission", getTransmission)
 
 // Cart API start
 app.get("/getCarsFromUserCart/:id", getCarsFromUserCart)
+app.put("/buyFromCart/:user_id", buyFromCart)
+app.get("/allBoughtCars/:user_id", allBoughtCars)
 app.delete("/remove/:car_id/:user_id", removeFromCart)
 app.delete("/remove/:user_id", removeAllFromCart)
 app.post("/addToCart", addToCart)
@@ -60,7 +62,7 @@ app.post("/addToCart", addToCart)
 //  Favorites API start
 app.post("/addToFavorites", addToFavorites)
 app.get("/getCarsFromUserFavorites/:id", getCarsFromUserFavorites)
-app.delete("/removeFromFav/:car_id/:user_id", removeFromFavorites)
+app.delete("/removeFromFavorites/:car_id/:user_id", removeFromFavorites)
 //  Favorites API end
 
 // User API start

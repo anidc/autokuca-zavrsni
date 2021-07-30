@@ -22,7 +22,7 @@ const getCarsFromUserFavorites = (req, res) => {
 const removeFromFavorites = (req, res) => {
     const { car_id, user_id } = req.params;
     const sql = "DELETE FROM favorite WHERE user_id = ? and car_id = ? LIMIT 1"
-    conn.query(sql, [car_id, user_id], (err, results) => {
+    conn.query(sql, [user_id, car_id], (err, results) => {
         if (err) return res.status(500).send(err)
         res.status(200).json({ msg: "Uspjesno obrisan auto" })
     })

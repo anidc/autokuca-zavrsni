@@ -66,10 +66,6 @@ export class CarsServiceService {
     return this.http.post(environment.serverUrl + '/addToCart', { car_id, user_id: this.userService.loggedUser.id })
   }
 
-  removeFromCart(car_id: number) {
-    return this.http.delete(environment.serverUrl + '/remove/' + car_id + '/' + this.userService.loggedUser.id)
-  }
-
   removeAllFromCart() {
     return this.http.delete(environment.serverUrl + '/remove/' + this.userService.loggedUser.id)
   }
@@ -86,9 +82,19 @@ export class CarsServiceService {
     return this.http.get<any[]>(environment.serverUrl + '/getCarsFromUserFavorites/' + this.userService.loggedUser.id)
   }
 
-  removeFromFavorites(car_id: number) {
-    return this.http.delete(environment.serverUrl + '/removeFromFav/' + car_id + '/' + this.userService.loggedUser.id)
+  removeFromCart(car_id: number) {
+    return this.http.delete(environment.serverUrl + '/remove/' + car_id + '/' + this.userService.loggedUser.id)
   }
 
+  removeFromFavorites(car_id: number) {
+    return this.http.delete(environment.serverUrl + '/removeFromFavorites/' + car_id + '/' + this.userService.loggedUser.id)
+  }
 
+  buyFromCart() {
+    return this.http.put(environment.serverUrl + "/buyFromCart/" + this.userService.loggedUser.id, {})
+  }
+
+  allBoughtCars() {
+    return this.http.get(environment.serverUrl + "/allBoughtCars/" + this.userService.loggedUser.id)
+  }
 }
